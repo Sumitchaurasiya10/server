@@ -4,7 +4,7 @@ const live_url =
 
 const connectDB = async () => {
   return mongoose
-    .connect(live_url)
+    .connect(process.env.LIVE_URL)
 
     .then(() => {
       console.log("MongoDB connected successfully");

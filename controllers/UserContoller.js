@@ -43,7 +43,7 @@ class UserController {
       }
 
       // token create
-      const token = jwt.sign({ ID: user._id }, "sumit1021");
+      const token = jwt.sign({ ID: user._id }, process.env.JWT_SECRET, {expiresIn: "2d"}); //2 din me token expire ho jayega
       //console.log(token)
 
       // send token in HTTP-only cookie
@@ -53,35 +53,30 @@ class UserController {
 
       res.status(200).json({
         message: "Login Successful",
-        role:user.role,
+        role: user.role,
         name: user.name,
-        email: user.email
+        email: user.email,
       });
-
-
-    
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: "internal server error" });
     }
   };
 
-  static profile = async (req, rs) =>  {
+  static profile = async (req, rs) => {
     try {
-        console.log("Hello profile")
-
-    }catch (errpr){
-        console.log(error)
+      console.log("Hello profile");
+    } catch (errpr) {
+      console.log(error);
     }
   };
 
-  static logout = async (req,res) => {
+  static logout = async (req, res) => {
     try {
-        res.clearCookie("token")
-        res.status(200).json({message: "logout successfully"})
-
+      res.clearCookie("token");
+      res.status(200).json({ message: "logout successfully" });
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   };
 }

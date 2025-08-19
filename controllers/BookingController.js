@@ -32,12 +32,12 @@ class BookingController {
   static getUserBookings = async (req, res) => {
     try {
       const userId = req.user._id;
-      const booking = await Booking
+      const bookings= await Booking
         .find({ user: userId })
         .populate("course", "title price")
         .sort({ createdAt: -1 });
 
-      return res.status(200).json({ booking });
+      return res.status(200).json({ bookings });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: "server error" });

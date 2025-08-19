@@ -7,6 +7,7 @@ const fileupload = require("express-fileupload")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
 
+require("dotenv").config();
 
 app.use(
     cors({
@@ -28,4 +29,4 @@ app.use(express.json())
 
 
 app.use('/api',web) // localhost:3000/api/
-app.listen(port,console.log('server start localhost:3000'))
+app.listen(process.env.PORT,console.log('server start localhost:3000'))
